@@ -3,7 +3,7 @@ tasks:
       go mod tidy
       go build -o svwcmd .
     command: |
-      ./svwcmd :8080
+      ./svwcmd -listen :8080
 vscode:
   extensions:
     - golang.go
