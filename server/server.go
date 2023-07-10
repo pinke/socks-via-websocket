@@ -31,10 +31,13 @@ func wsHandler(conn *websocket.Conn) {
 		if data == nil || len(data) == 0 {
 			continue
 		}
-		if data[0] == 2 { //dial
+		if data[0] == 2 { //dial :
 			lenOfData := int(data[1])
 			url := string(data[2 : 2+lenOfData])
 			d, err := net.Dial(url[0:strings.Index(url, "://")], url[strings.Index(url, "://")+3:])
+			if err != nil {
+				break
+			}
 			data = []byte{0}
 			if err == nil {
 				connsIndex++
